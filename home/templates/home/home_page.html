@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Featured Events</h2>
+    <div id="sportsCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for event in events %}
+                <div class="carousel-item active">
+                    <img class="rounded-4" src={{ event.cover_img }} height="550px" width="100%" class="d-block" alt="Event"/>
+                    <div class="carousel-caption d-none d-md-block" />
+                    <a class="text-light text-decoration-none link-decoration-non"
+                       href="{% url 'event.details' pk=event.id %}">
+                        <h5>{{ event.name }}</h5>
+                        <h5>at {{ event.venue_id.name }}</h5>
+                    </a>
+                    <p>{{ event.date }}</p>
+                </div>
+            </div>
+        {% empty %}
+            <h1>This is awkward... There are no events in your area!</h1>
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev"
+            type="button"
+            data-bs-target="#sportsCarousel"
+            data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next"
+            type="button"
+            data-bs-target="#sportsCarousel"
+            data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+{% if user.is_authenticated and user.type == "VENUE_OWNER" %}
+        <form method='post' id="reg-form" class="form-control"> {% csrf_token %}
+            <h1>Add a Venue</h1>
+            <hr />
+            {{ form.as_p }}
+            <hr />
+            <h2 class="my-4">Add Contact Detailes</h2>
+            {{ contact.as_p }}
+            <hr />
+            <h2 class="my-4">Add Seats</h2>
+            <a>Add one seat type now, and add more later in your dashboard</a>
+            {{ seats.as_p }}
+            <hr class="my-5" />
+            <button type="submit" class="btn btn-primary mb-5">Submit</button>
+        </form>
+{% else %}
+    {% include "404.html" %}
+{% endif %}
+{% endblock content %}

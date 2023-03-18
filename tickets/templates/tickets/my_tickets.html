@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Welcome, {{ user.username }}!</h1>
+    <h3>Your Purchased Tickets Can Be Accessed Here!</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for ticket in tickets %}
+            {% if user.id == ticket.buyer_id_id %}
+                <div class="col-12 col-md-6 mb-3">
+                    <a class="text-dark text-decoration-none link-decoration-non"
+                       href="{% url 'event.details' pk=ticket.event_id.id %}">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ ticket.event_id.name }} at {{ ticket.event_id.venue_id.name }}</h5>
+                                <p class="card-text">Date: {{ ticket.event_id.date }}</p>
+                                <hr/>
+                                <p class="card-text">Quantity: {{ ticket.quantity }}</p>
+                                <p class="card-text">Purchased On: {{ ticket.bought_at }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock content %}

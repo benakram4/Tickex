@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% if not venue %}
+    <h1>Venue not found</h1>
+{% else %}
+    <div class="card text-align-left">
+        {% if venue.cover_img %}
+            
+            <img src="{{ venue.cover_img }}" class="card-img-top rounded " alt="venue image" height="500rem" width="100%"/>
+        {% else %}
+            <img src="{% static 'public/img/Image_not_available.png' %}" class="card-img-top rounded" alt="no image" height="500px" width="200px" />
+        {% endif %}
+            <div class="card-body">
+                <h5  class="card-title">{{ venue.name }}</h5>
+                <p class="card-text">{{ venue.description }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Phone Number:</strong> <a href="tel:{{ venue.contact.phone_number }}">{{ venue.contact.phone_number }}</a></li>
+                <li class="list-group-item"><strong>Address: </strong>{{ venue.contact.street }}, {{ venue.contact.city }}, {{ venue.contact.province }}, {{ venue.contact.postal_code }}</li>
+                <li class="list-group-item"><strong>Website: </strong><a href="{{ venue.contact.website }}" target="_blank" >{{ venue.name }}</a></li>
+                <li class="list-group-item"><strong>Email: </strong><a href="{{ venue.contact.email }}" target="_blank" >Contact Venue</a></li>
+            </ul>
+            {% comment %} if the user type is a venue owner and he owns this venue, then show the edit button {% endcomment %}
+            {% if user.is_authenticated and user.type == 'VENUE_OWNER' %}
+                {% if venue.owner_id_id == user.id %}
+                    <div class="card-body">
+                        <a class="btn btn-secondary" href="{% url 'event.create' pk=venue.id %}" class="card-link">Add Event for Venue</a>
+                        <a class="btn btn-secondary" href="{% url 'venue.update' pk=venue.id %}" class="card-link">Edit/Add Venue/Seats</a>
+                        <a class="btn btn-danger" href="{% url 'venue.delete' pk=venue.id %}" class="card-link">Delete Venue</a>
+                    </div>
+                {% endif %}
+            {% endif %}
+    </div>
+    <iframe 
+        class="rounded my-5" 
+        src="https://maps.google.com/maps?q={{ venue.contact.street }}{{ venue.contact.city }}{{ venue.contact.province }}{{ venue.contact.postal_code }}&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" 
+        width=100%% height=400 allowfullscreen>
+    </iframe>
+{% endif %}
+{% endblock content %}

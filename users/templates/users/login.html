@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="post" id="log-form" class="form-control" >{% csrf_token %}
+      {{ form.as_p }}
+      {% if form.errors %}
+      <div class="alert alert-danger" role="alert">
+          <p>Please enter a correct username and password. Note that both fields may be case-sensitive</p>
+      </div>
+    {% endif %}
+      <p> Dont have an account? <a href="{% url 'signup' %}">Register</a></p>
+      <input class="btn btn-secondary" type="submit" name="=Login" value=" Login "/>
+    </form>
+{% endblock content %}

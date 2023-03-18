@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    {% if not venues %}
+    <h1 class="mb-4">You have no venues</h1>
+    <a href="{% url 'venue.create' %}" class="btn btn-secondary">Click here to add a Venue</a>
+    {% else %}
+        <h1 class="mb-4">Your Venues</h1>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for venue in venues %}
+           <div class="col-12 col-md-6 mb-3">
+            <a class="text-dark text-decoration-none link-decoration-non" href="{% url 'venue.detail' pk=venue.id %}">
+                <div class="card h-100">
+                        {% if venue.thumbnail_img %}
+                        <img src="{{ venue.thumbnail_img }}" class="card-img-top" alt="venue image" height="500px" width="200px"/>
+                        {% else %}
+                        <img src="{% static 'public/img/Image_not_available.png' %}" class="card-img-top" alt="no image" height="500px" width="200px" />
+                        {% endif %}
+                        <div class="card-body">
+                            <h5  class="card-title">{{ venue.name }}</h5>
+                            <p class="card-text">{{ venue.description|truncatechars:500 }}</p>
+                        </div>
+                </div>
+            </a>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock content %}

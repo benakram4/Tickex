@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post" class="border round"> {% csrf_token %}
+    <p class="m-5">Are you sure you want to delete: "{{ user.username }}"</p>
+    <p>This action cannot be undone</p>
+    <input type="submit" value="Confirm" class="btn btn-danger my-5"/>
+</form>
+{% endblock content %}

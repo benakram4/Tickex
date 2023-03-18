@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Welcome Back {{ user.first_name }} {{ user.last_name }}</h1>
+    <hr/>
+    <h2>Your Balance: <span class="text-success">${{ balance }}</span></h2>
+    <hr/>
+    <h2>Tickets Sold: {{ quantity }} </h2>
+    <hr/>
+    <h2>Venue Management</h2>
+    <a class="btn btn-primary"
+       href="{% url 'user.venue.list' %}"
+       role="button">View Your Venues</a>
+    <a class="btn btn-primary" href="{% url 'venue.create' %}" role="button">Add a Venue</a>
+    <a class="btn btn-primary"
+       href="{% url 'user.event.list' %}"
+       role="button">View Your Events</a>
+    <hr/>
+{% endblock content %}

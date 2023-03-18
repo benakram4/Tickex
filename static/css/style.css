@@ -1,0 +1,40 @@
+
+#reg-form {
+    text-align: center;
+    margin: 0 auto; 
+    width: 70em;  
+}
+
+#reg-form .helptext {
+    display: none;
+}
+
+#reg-form .alert{
+    height: auto;
+    width: 50%;
+    padding: 0.5em;
+    margin: 10px auto 20px auto; 
+}
+
+#reg-form label{
+    display: block;
+    margin: 1em 0em;
+}
+
+#log-form .errorlist{
+    display: none;
+}
+
+#log-form .alert{
+    height: auto;
+    width: 50%;
+    margin: 10px auto 20px auto; 
+}
+
+#log-form label{
+    display: block;
+    margin: 1em 0em;
+}
+
+
+

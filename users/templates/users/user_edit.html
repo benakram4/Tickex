@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Edit Your Account Details</h1>
+    <form method="post" id="reg-form" class="form-control"> {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save Changes" class="btn btn-primary btn-lg" />
+    </form>
+    {% if form.errors %}
+    <div class="alert alert-danger my-5">
+        {{ form.errors.title.as_text }}
+    </div>
+    {% endif %}
+{% endblock content %}

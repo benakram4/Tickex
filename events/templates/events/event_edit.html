@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Edit Your Event</h1>
+        <form method='post' id="reg-form" class="form-control"> {% csrf_token %}
+            {{ form.as_p }}
+            <hr />
+            <h2 class="my-4">Add/Edit Seats</h2>
+            <a>You can only add one seat type at a time</a>
+            <div>{{ seat }}</div>
+            <button type="submit" class="btn btn-primary my-5">Submit</button>
+        </form>
+{% endblock content %}

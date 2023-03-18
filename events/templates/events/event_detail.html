@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    {% if not event %}
+        <h1>Event not found</h1>
+    {% else %}
+        <div class="card text-align-left">
+            {% if event.cover_img %}
+                <img src="{{ event.cover_img }}"
+                     class="card-img-top rounded "
+                     alt="event image"
+                     height="500rem"
+                     width="100%"/>
+            {% else %}
+                <img src="{% static 'public/img/Image_not_available.png' %}"
+                     class="card-img-top rounded "
+                     alt="venue image"
+                     height="500rem"
+                     width="100%"/>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ event.name }}</h5>
+                <p class="card-text">at {{ event.venue_id.name }}</p>
+                <p class="card-text">{{ event.description }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <strong>Phone Number:</strong> <a href="tel:{{ event.venue_id.contact.phone_number }}">{{ event.venue_id.contact.phone_number }}</a>
+                </li>
+                <li class="list-group-item">
+                    <strong>Address:</strong>{{ event.venue_id.contact.street }}, {{ event.venue_id.contact.city }}, {{ event.venue_id.contact.province }}, {{ event.venue_id.contact.postal_code }}
+                </li>
+                <li class="list-group-item">
+                    <strong>Website:</strong><a href="{{ event.venue_id.contact.website }}" target="_blank">{{ event.venue_id.name }}</a>
+                </li>
+                <li class="list-group-item">
+                    <strong>Email:</strong><a href="{{ event.venue_id.contact.email }}" target="_blank">Contact Venue</a>
+                </li>
+            </ul>
+            {% comment %} if the user type is a venue owner and he owns this venue, then show the edit button {% endcomment %}
+            {% if user.is_authenticated and user.type == 'VENUE_OWNER' %}
+                {% if event.venue_id.owner_id_id == user.id %}
+                    <div class="card-body">
+                        <a class="btn btn-secondary" href="#" class="card-link">Add Event for Venue</a>
+                        <a class="btn btn-secondary"
+                           href="{% url 'event.update' pk=event.id %}"
+                           class="card-link">Edit/Add Event/Seats</a>
+                        <a class="btn btn-danger"
+                           href="{% url 'event.delete' pk=event.id %}"
+                           class="card-link">Delete Event</a>
+                    </div>
+                {% endif %}
+            {% elif user.is_authenticated and user.type != "VENUE_OWNER" %}
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                        <div class="col-sm-4">
+                            <p><strong>Seat Type</strong></p>
+                          </div>
+                          <div class="col-sm-4">
+                            <p><strong>Price</strong></p>
+                          </div>
+                          <div class="col-sm-4"></div>
+                        </div>
+                        {% for total_seats, seat, price, seat_id in seat_types_prices %}
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <p>{{ seat }}</p>
+                          </div>
+                          <div class="col-sm-4">
+                            <p>${{ price }}</p>
+                          </div>
+                          <div class="col-sm-4">
+                            {% if total_seats > 0 %}
+                                <a href="{% url 'create.ticket' event_id=event.id seat_type_id=seat_id %}" class="btn btn-success">Buy Ticket</a>
+                            {% else %}
+                                <a href="#" class="btn btn-secondary disabled">Sold Out</a>
+                            {% endif %}
+                          </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <iframe class="rounded my-5"
+                src="https://maps.google.com/maps?q={{ event.venue_id.contact.street }}{{ event.venue_id.contact.city }}{{ event.venue_id.contact.province }}{{ event.venue_id.contact.postal_code }}&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                width="100%"
+                height="400"
+                allowfullscreen>
+        </iframe>
+    {% endif %}
+{% endblock content %}

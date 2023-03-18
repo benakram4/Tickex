@@ -1,0 +1,47 @@
+Users List
+====================
+
+# Venue have have the mentioned bellow username and password
+# rest is a as mentioned here :
+
+1. first name: Daveta , last name: McIlroy , email: dmcilroy0@dmoz.org, owner of: Scotiabank Arena
+2. first name: Elliott , last name: Tother , email: etother1@zdnet.com, owner of: Rogers Centre
+3. first name: Barnebas, last name: Ryall, email: bryall2@cocolog-nifty.com, owner of: The History
+4. first name: Frances , last name: Soppit , email: fsoppit3@bloomberg.com, owner of: Budweiser Stage
+5. first name: Packston, last name: Oxton , email: poxton4@ucsd.edu, owner of: Roy Thomson Hall 
+
+Venue Owners : 
+
+    username | password
+-----------------------
+1.  owner1 | owner1owner1
+2.  owner2 | owner2owner2
+3.  owner3 | owner3owner3
+4.  owner4 | owner4owner4
+5.  owner5 | owner5owner5
+
+
+# Resellers and Regular Users have the username value as their email/first name/last name
+# All the data can be checked in the database expect the password which is encrypted
+# therefore the password are written here
+
+Resellers : 
+
+    username | password
+-----------------------
+1.  resell1 | resell1resell1
+2.  resell2 | resell2resell2
+3.  resell3 | resell3resell3
+4.  resell4 | resell4resell4
+5.  resell5 | resell5resell5
+
+
+Regular Users :
+
+    username | password
+-----------------------
+1.  user1 | user1user1
+2.  user2 | user2user2
+3.  user3 | user3user3
+4.  user4 | user4user4
+5.  user5 | user5user5

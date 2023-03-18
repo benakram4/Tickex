@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="text-center mb-3">Register</h1>
+    <form method="post" id="reg-form" class="form-control" >{% csrf_token %}
+        {% for field in form %}
+            <div class="form-group m-3">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ field.errors }}
+                    {{ field.help_text }}
+                </div>
+            {% endif %}
+            </div>
+        {% endfor %}
+        <input class="btn btn-secondary my-3" type="submit" name="Submit"/>
+    </form>
+{% endblock content %}

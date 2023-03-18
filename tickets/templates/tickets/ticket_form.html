@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if user.type == "RESELLER" and event_allocated_seats >= 10 or user.type == "REGULAR" %}
+            <form method='post' id="reg-form" class="form-control">
+                {% csrf_token %}
+                <h1>Purchase a Ticket</h1>
+                <hr />
+                {{ form.as_p }}
+                <hr />
+                    <button type="submit" class="btn btn-primary mb-5">Submit</button>
+            </form>
+        {% else %}
+            <h1>We are sorry, Theres not enough tickets for reselling</h1>
+        {% endif %}
+    {% else %}
+        {% include "404.html" %}
+    {% endif %}
+{% endblock content %}
