@@ -10,44 +10,49 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <!-- favicon -->
         <link rel="icon"
-              href="{% static 'public/img/ticket.png' %}"
-              type="image/x-icon"/>
+            href="{% static 'public/img/ticket.png' %}"
+            type="image/x-icon"/>
         <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}"/>
         <!-- Bootstrap CSS & JS -->
         <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-              integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-              crossorigin="anonymous"/>
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+            crossorigin="anonymous"/>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
                 integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-                crossorigin="anonymous"></script>
+                crossorigin="anonymous">
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-                crossorigin="anonymous"></script>
+                crossorigin="anonymous" >
+        </script>
+        <script src="{% static 'js/navEvents.js' %}"></script>
     </head>
     <header>
         <!-- navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{% url 'home' %}">
+        <nav id="navbar-menu"  expand="lg" class="navbar navbar-expand-lg navbar-light bg-light">
+            <a  class="navbar-brand" href="{% url 'home' %}">
                 <img src="{% static 'public/img/ticket.png' %}"
-                     width="30"
-                     height="30"
-                     alt="ticket"/>
+                    width="30"
+                    height="30"
+                    alt="ticket"/>
                 Tickex - Concerts &amp; Sports
             </a>
-            <button class="navbar-toggler"
+            <button id="burger-btn"
+                    class="navbar-toggler is-active"
                     type="button"
-                    data-toggle="collapse"
-                    data-target="#navbarSupportedContent"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent"
                     aria-expanded="false"
-                    aria-label="Toggle navigation">
+                    aria-label="Toggle navigation"
+                    onclick="toggleBurgerButton()">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div id="nav-dropdown" class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'venue.list' %}">Venues</a>
+                        <a onclick="closeBurgerMenu()" class="nav-link" href="{% url 'venue.list' %}">Venues</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'event.list' %}">Events</a>
@@ -61,9 +66,9 @@
                     <div class="btn-group ms-auto">
                         <a type="button" class="btn btn-clear" href="{% url 'dashboard' %}">
                             <img src="{% static 'public/img/person-icon.png' %}"
-                                 width="30px"
-                                 height="30px"
-                                 alt="person"/>
+                                width="30px"
+                                height="30px"
+                                alt="person"/>
                             Dashboard
                         </a>
                         <button type="button"
@@ -86,12 +91,12 @@
                 {% elif user.is_authenticated and user.type != "VENUE_OWNER" %}
                     <div class="btn-group ms-auto">
                         <a type="button"
-                           class="btn btn-clear"
-                           href="{% url 'user.detail' pk=user.id %}">
+                        class="btn btn-clear"
+                        href="{% url 'user.detail' pk=user.id %}">
                             <img src="{% static 'public/img/person-icon.png' %}"
-                                 width="30px"
-                                 height="30px"
-                                 alt="person"/>
+                                width="30px"
+                                height="30px"
+                                alt="person"/>
                             {{ user.username }}
                         </a>
                         <button type="button"
@@ -114,9 +119,9 @@
                 {% else %}
                     <a class="btn btn-clear ms-auto"  href="{% url 'login' %}">
                         <img src="{% static 'public/img/person-icon.png' %}"
-                             width="30px"
-                             height="30px"
-                             alt="person"/>
+                            width="30px"
+                            height="30px"
+                            alt="person"/>
                         Login
                     </a>
                 {% endif %}
