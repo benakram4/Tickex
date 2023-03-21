@@ -7,16 +7,16 @@
         <div class="card text-align-left">
             {% if event.cover_img %}
                 <img src="{{ event.cover_img }}"
-                     class="card-img-top rounded "
-                     alt="event image"
-                     height="500rem"
-                     width="100%"/>
+                    class="card-img-top rounded "
+                    alt="event image"
+                    height="500rem"
+                    width="100%"/>
             {% else %}
                 <img src="{% static 'public/img/Image_not_available.png' %}"
-                     class="card-img-top rounded "
-                     alt="venue image"
-                     height="500rem"
-                     width="100%"/>
+                    class="card-img-top rounded "
+                    alt="venue image"
+                    height="500rem"
+                    width="100%"/>
             {% endif %}
             <div class="card-body">
                 <h5 class="card-title">{{ event.name }}</h5>
