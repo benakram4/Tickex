@@ -8,22 +8,23 @@
         <h1 class="mb-4">Your Events</h1>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             {% for event in events %}
-           <div class="col-12 col-md-6 mb-3">
-            <a class="text-dark text-decoration-none link-decoration-non" href="{% url 'event.details' pk=event.id %}">
-                <div class="card h-100">
-                        {% if event.thumbnail_img %}
-                        <img src="{{ event.thumbnail_img }}" class="card-img-top" alt="event image" height="500px" width="200px"/>
-                        {% else %}
-                        <img src="{% static 'public/img/Image_not_available.png' %}" class="card-img-top" alt="no image" height="500px" width="200px" />
-                        {% endif %}
-                        <div class="card-body">
-                            <h5  class="card-title">{{ event.name }}</h5>
-                            <p class="card-text">{{ event.description|truncatechars:500 }}</p>
-                        </div>
-                </div>
-            </a>
+            <div class="col-12 col-md-6 mb-3">
+                <a class="text-dark text-decoration-none link-decoration-non" href="{% url 'event.details' pk=event.id %}">
+                    <div class="card h-100">
+                            {% if event.thumbnail_img %}
+                            <img src="{{ event.thumbnail_img }}" class="card-img-top" alt="event image" height="500px" width="200px"/>
+                            {% else %}
+                            <img src="{% static 'public/img/Image_not_available.png' %}" class="card-img-top" alt="no image" height="500px" width="200px" />
+                            {% endif %}
+                            <div class="card-body">
+                                <h5  class="card-title">{{ event.name }}</h5>
+                                <p class="card-text">{{ event.description|truncatechars:500 }}</p>
+                            </div>
+                    </div>
+                </a>
             </div>
             {% endfor %}
         </div>
     {% endif %}
 {% endblock content %}
+
