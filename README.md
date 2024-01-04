@@ -37,8 +37,3 @@ Our current team has background using the Python language and its associated web
 * a functional product
 * a demonstration and verbal discussion about your project with the instructor
 
-## Grading Criteria 
-
-Your work will be evaluated based on how well you have applied the concepts explored in the course material.  
-
-Submission after the due date will be penalized *10% per day*
