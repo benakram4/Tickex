@@ -1,11 +1,20 @@
-{% extends "base.html" %}
-{% load crispy_forms_tags %} 
-{% block content %}
-  <div class="login-form">
-    <form method="post" class="form-control" >{% csrf_token %}
-      {{ form|crispy }}
-      <p> Don't have an account? <a href="{% url 'signup' %}">Register</a></p>
-      <input class="btn btn-secondary" type="submit" name="=Login" value=" Login "/>
-    </form>
-  </div>
+{% extends "base.html" %} {% load crispy_forms_tags %} {% block content %}
+<div class="login-form">
+	<form method="post" class="form-control">
+		{% csrf_token %} {{ form|crispy }}
+		<p>Don't have an account? <a href="{% url 'signup' %}">Register</a></p>
+		<input
+			class="btn btn-secondary"
+			type="submit"
+			name="=Login"
+			value=" Login "
+		/>
+	</form>
+	<p><u>Venue Owner User:</u></p>
+	<p>Username: owner1 | Password: owner1owner1</p>
+	<p><u>Reseller User:</u></p>
+	<p>Username: resell1 | Password: resell1resell1</p>
+	<p><u>Regular User:</u></p>
+	<p>Username: user1 | Password: user1user1</p>
+</div>
 {% endblock content %}
